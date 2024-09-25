@@ -22,3 +22,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build  # Run the Gradle build command
+
+      - name: List JAR files
+        run: ls -l build/libs/  # List the contents of the build/libs directory
