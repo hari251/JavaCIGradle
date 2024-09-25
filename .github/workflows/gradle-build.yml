@@ -25,3 +25,15 @@ jobs:
 
       - name: List JAR files
         run: ls -l build/libs/  # List the contents of the build/libs directory
+
+      - name: Upload JAR to Artifactory
+        run: |
+          echo "Uploading JAR to Artifactory..."
+          ARTIFACTORY_USER="s45602999@gmail.com"  # Your Artifactory username
+          ARTIFACTORY_PASSWORD="Arena$6202#"  # Your Artifactory password
+          ARTIFACTORY_URL="https://testjavacigradle.jfrog.io/artifactory/gradle-task-gradle-dev-local"  # Your Artifactory URL
+
+          # Replace 'your-artifact.jar' with the actual JAR name generated in build/libs
+          curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWORD \
+            -T build/libs/your-artifact.jar \
+            "$ARTIFACTORY_URL/sonar-scanner-gradle-basic-1.0.jar"  # Replace with the actual JAR name
