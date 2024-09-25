@@ -35,5 +35,5 @@ jobs:
 
           # Replace 'your-artifact.jar' with the actual JAR name generated in build/libs
           curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWORD \
-            -T build/libs/your-artifact.jar \
+            -T build/libs/sonar-scanner-gradle-basic-1.0.jar \
             "$ARTIFACTORY_URL/sonar-scanner-gradle-basic-1.0.jar"  # Replace with the actual JAR name
