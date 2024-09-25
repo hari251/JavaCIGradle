@@ -17,5 +17,8 @@ jobs:
           java-version: '17'  # Use Java 17
           distribution: 'adopt'
 
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew  # Add executable permission to gradlew
+
       - name: Build with Gradle
-        run: ./gradlew build  # Adjust if your Gradle wrapper is named differently
+        run: ./gradlew build  # Run the Gradle build command
