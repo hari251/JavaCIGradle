@@ -29,11 +29,10 @@ jobs:
       - name: Upload JAR to Artifactory
         run: |
           echo "Uploading JAR to Artifactory..."
-          ARTIFACTORY_USER="s45602999@gmail.com"  # Your Artifactory username
-          ARTIFACTORY_PASSWORD="Arena$6202#"  # Your Artifactory password
+          ARTIFACTORY_API_KEY="AKCpBtN8RniWvi19bumiTtGzhcWbRmBroNb1qXvxRqi9eP57NqFRxRNym4PKJKc3v7qssDSnT"  # Your Artifactory API key
           ARTIFACTORY_URL="https://testjavacigradle.jfrog.io/artifactory/gradle-task-gradle-dev-local"  # Your Artifactory URL
 
-          # Replace 'your-artifact.jar' with the actual JAR name generated in build/libs
-          curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWORD \
+          # Upload the specified JAR file
+          curl -H "X-JFrog-Art-Api:$ARTIFACTORY_API_KEY" \
             -T build/libs/sonar-scanner-gradle-basic-1.0.jar \
-            "$ARTIFACTORY_URL/sonar-scanner-gradle-basic-1.0.jar"  # Replace with the actual JAR name
+            "$ARTIFACTORY_URL/sonar-scanner-gradle-basic-1.0.jar"  # Uploading the JAR to Artifactory
