@@ -1,0 +1,32 @@
+name: Java CI with Gradle
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch if different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Publish to Artifactory
+      env:
+        ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
+        ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+        ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      run: |
+        ./gradlew publish -DartifactoryUrl=$ARTIFACTORY_URL \
+                          -DartifactoryUser=$ARTIFACTORY_USERNAME \
+                          -DartifactoryPassword=$ARTIFACTORY_PASSWORD
